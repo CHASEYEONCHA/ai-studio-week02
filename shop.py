@@ -37,3 +37,26 @@ class Order:
     # 결제 완료 시 customer.add_points()가 호출
     def pay(self): 
         self.customer.add_points(self.total_price())
+
+"""검증 코드"""
+# 파일 하단에 고객 2명(vip 1명, basic 1명)과 주문 3건을 생성
+# 각 주문의 총액과 결제 후 고객별 포인트를 print로 출력
+# 커밋 단위: Customer 완성 / Order 완성 / 검증 시나리오 완성 — 최소 3커밋.
+
+c1 = Customer("김서강", "vip")
+c2 = Customer("박강서")
+
+order1 = Order("A-1001", c1, [("라떼", 5500), ("크루아상", 4200)])
+order2 = Order("A-1002", c1, [("아메리카노", 3500), ("케이크", 8500)])
+order3 = Order("A-1003", c2, [("스무디", 7000), ("쿠키", 3000)])
+
+print(f"[주문 번호: {order1.order_id}] {order1.customer.name}님의 결제 금액: {order1.total_price():,}원")
+print(f"[주문 번호: {order2.order_id}] {order2.customer.name}님의 결제 금액: {order2.total_price():,}원")
+print(f"[주문 번호: {order3.order_id}] {order3.customer.name}님의 결제 금액: {order3.total_price():,}원")
+
+order1.pay()
+order2.pay()
+order3.pay()
+
+print(c1.summary())
+print(c2.summary())
